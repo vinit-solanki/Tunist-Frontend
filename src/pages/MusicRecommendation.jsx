@@ -40,7 +40,7 @@ const MusicRecommendations = () => {
       setError(''); // Clear any previous errors
       
       // First check if the API is accessible
-      const healthResponse = await fetch('http://localhost:5005/health');
+      const healthResponse = await fetch('https://song-recommendation-using.onrender.com/health');
       const healthData = await healthResponse.json();
       
       if (!healthData.model_loaded) {
@@ -49,7 +49,7 @@ const MusicRecommendations = () => {
       }
       
       // Get debug info to troubleshoot
-      const debugResponse = await fetch('http://localhost:5005/api/debug');
+      const debugResponse = await fetch('https://song-recommendation-using.onrender.com/api/debug');
       const debugData = await debugResponse.json();
       console.log('Debug info:', debugData);
       
@@ -64,7 +64,7 @@ const MusicRecommendations = () => {
       }
       
       // Now get the options
-      const response = await fetch('http://localhost:5005/api/options');
+      const response = await fetch('https://song-recommendation-using.onrender.com/api/options');
       const data = await response.json();
       
       if (data.error) {
@@ -86,13 +86,13 @@ const MusicRecommendations = () => {
       }
     } catch (err) {
       console.error('Error loading options:', err);
-      setError(`Failed to load options: ${err.message}. Please check if the server is running at http://localhost:5005`);
+      setError(`Failed to load options: ${err.message}. Please check if the server is running at https://song-recommendation-using.onrender.com`);
     }
   };
 
   const loadModelInfo = async () => {
     try {
-      const response = await fetch('http://localhost:5005/api/model-info');
+      const response = await fetch('https://song-recommendation-using.onrender.com/api/model-info');
       const data = await response.json();
       if (!data.error) {
         setModelInfo(data);
@@ -120,7 +120,7 @@ const MusicRecommendations = () => {
       setSelectedSong(null);
 
       const response = await fetch(
-        'http://localhost:5005/api/recommend',
+        'https://song-recommendation-using.onrender.com/api/recommend',
         {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -165,7 +165,7 @@ const MusicRecommendations = () => {
       setSelectedSong({ artist, song });
 
       const response = await fetch(
-        'http://localhost:5005/api/similar',
+        'https://song-recommendation-using.onrender.com/api/similar',
         {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
